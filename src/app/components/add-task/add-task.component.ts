@@ -4,6 +4,7 @@ import { TaskService } from '../../services/task.service';
 import { CommonModule } from '@angular/common';
 import { TaskCardComponent } from '../task-card/task-card.component';
 import { ITask } from '../../types/type';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'app-add-task',
@@ -14,6 +15,7 @@ import { ITask } from '../../types/type';
 })
 export class AddTaskComponent implements OnInit {
   service = inject(TaskService);
+  modalService = inject(ModalService);
   tasks: ITask[] = [];
   // initialise on component mount
   ngOnInit(): void {
@@ -26,5 +28,9 @@ export class AddTaskComponent implements OnInit {
 
   onRefreshTask() {
     this.loadTasks();
+  }
+  // opent the modal
+  onOpenModal() {
+    this.modalService.onToggleOpen();
   }
 }

@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { TaskService } from "../../services/task.service";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ModalService } from '../../services/modal.service';
 @Component({
   selector: 'app-create-task',
   standalone: true,
@@ -12,6 +13,8 @@ import { CommonModule } from '@angular/common';
 export class CreateTaskComponent {
   // using service
   service = inject(TaskService);
+  modalService = inject(ModalService);
+
   // using form to create task
   taskForm: FormGroup = new FormGroup({
     id: new FormControl(Date.now()),
@@ -25,6 +28,8 @@ export class CreateTaskComponent {
     if (this.taskForm.valid) {
       this.service.onAddTask(this.taskForm.value);
       this.taskForm.reset();
+      this.modalService.onToggleOpen();
+
     }
   }
 

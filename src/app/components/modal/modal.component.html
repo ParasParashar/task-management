@@ -1,0 +1,16 @@
+<div
+  *ngIf="isOpen"
+  class="fixed w-full h-full inset-0 flex items-center justify-center bg-neutral-700/20 z-50"
+>
+  <div
+    class="p-1 rounded-lg md:p-5 w-full md:h-auto overflow-auto md:w-1/2 relative bg-sky-400/20 transition-all transform scale-100 duration-300"
+  >
+    <ng-content></ng-content>
+    <button
+      (click)="onToggle()"
+      class="absolute top-2 right-2 bg-red-500 text-white p-2 rounded-full size-8 items-center justify-center flex hover:bg-red-600"
+    >
+      &times;
+    </button>
+  </div>
+</div>
