@@ -18,17 +18,18 @@
 
 /* Button Styling */
 button {
-    @apply bg-[#3ed190] text-white py-2 px-4 rounded-lg text-base hover:bg-[#33a974] hover:shadow-lg hover:ring-2 hover:ring-[#aaf4d5] focus:outline-none transition duration-300 ease-in-out;
+    /* @apply bg-[#3ed190] text-white py-2 px-4 rounded-lg text-base hover:bg-[#33a974] hover:shadow-lg hover:ring-2 hover:ring-[#aaf4d5] focus:outline-none transition duration-300 ease-in-out; */
+    @apply w-full disabled:bg-gray-300 py-3 bg-[#49e6a3] text-white rounded-lg font-semibold hover:bg-[#3ed190] shadow-lg transition duration-300 ease-in-out transform hover:scale-105 disabled:hover:bg-gray-300 disabled:hover:scale-100
 }
 
 /* Headings (h2) */
 h2,h1,h3,h4,h5,h6 {
-    @apply text-3xl font-bold text-[#536e64] mb-4;
+    @apply  font-bold font-sans text-[#536e64] mb-4;
 }
 
 /* Input Fields */
 input {
-    @apply  p-2 border border-[#aaf4d5] rounded-md bg-white focus:ring-2 focus:ring-[#49e6a3] focus:outline-none transition duration-200 ease-in-out;
+    @apply  w-full p-3 rounded-lg border border-gray-300 bg-white/60 text-[#536e64] focus:outline-none focus:ring-2 focus:ring-[#49e6a3] placeholder-gray-500 ease-in-out transition-all duration-300;
 }
 
 /* Select Dropdown */
@@ -38,7 +39,7 @@ select {
 
 /* Textarea */
 textarea {
-    @apply  p-2 border border-[#aaf4d5] rounded-md bg-white focus:ring-2 focus:ring-[#49e6a3] focus:outline-none transition duration-200 ease-in-out;
+    @apply w-full p-3 h-20 resize-none rounded-lg border border-gray-300 bg-white/60 text-[#536e64] focus:outline-none focus:ring-2 focus:ring-[#49e6a3] placeholder-gray-500 transition duration-300 ease-in-out;
 }
 
 /* Anchor Tags (Links) */

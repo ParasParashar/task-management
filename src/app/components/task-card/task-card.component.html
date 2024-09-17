@@ -1,0 +1,34 @@
+<section
+  class="shadow-lg hover:scale-105 transition-all duration-300 ease-in-out max-w-sm h-[250px] bg-white/30 backdrop-blur-md rounded-lg p-5 flex flex-col justify-between"
+>
+  <div>
+    <h6></h6>
+    <h6 class="text-[#536e64] font-bold text-lg mb-2">
+      <span class="opacity-80">
+        {{ sNo }}
+      </span>
+      {{ item.title.slice(0, 10) + "..." }}
+    </h6>
+    <p class="text-sm text-[#536e64] mb-3">
+      {{ item.description.slice(0, 20) + "..." }}
+    </p>
+    <p class="text-xs text-gray-500">
+      {{ item.date | date : "MMM d, yy" }}
+    </p>
+  </div>
+
+  <div class="flex items-center justify-between gap-2 mt-4">
+    <button
+      class="w-8 h-8 flex items-center justify-center bg-white/40 rounded-full"
+    >
+      <img class="w-5 h-5" src="/edit.svg" alt="edit" />
+    </button>
+
+    <button
+      (click)="onDelete(item.id)"
+      class="w-8 h-8 flex items-center justify-center bg-rose-400 rounded-full"
+    >
+      <img class="w-5 h-5" src="/delete.svg" alt="delete" />
+    </button>
+  </div>
+</section>

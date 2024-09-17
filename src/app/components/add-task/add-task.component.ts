@@ -1,12 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { CreateTaskComponent } from '../create-task/create-task.component';
+import { TaskService } from '../../services/task.service';
+import { CommonModule } from '@angular/common';
+import { TaskCardComponent } from '../task-card/task-card.component';
+import { ITask } from '../../types/type';
 
 @Component({
   selector: 'app-add-task',
   standalone: true,
-  imports: [],
+  imports: [CreateTaskComponent, CommonModule, TaskCardComponent],
   templateUrl: './add-task.component.html',
   styleUrl: './add-task.component.css'
 })
-export class AddTaskComponent {
+export class AddTaskComponent implements OnInit {
+  service = inject(TaskService);
+  tasks: ITask[] = [];
+  // initialise on component mount
+  ngOnInit(): void {
+    this.loadTasks();
+  }
 
+  loadTasks(): void {
+    this.tasks = this.service.getTasks();
+  }
+
+  onRefreshTask() {
+    this.loadTasks();
+  }
 }
