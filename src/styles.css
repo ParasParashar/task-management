@@ -1,1 +1,55 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "~@fortawesome/fontawesome-free/css/all.css";
+
+
+
+
+
+
+/* Global Styling for Root, Body, and HTML */
+:root, body, html {
+    height: 100%;
+    width: 100%;
+    @apply bg-gradient-to-br from-[#49e6a3] to-[#d6fdeb] via-[#aaf4d5] text-[#536e64] text-lg font-serif;
+}
+
+/* Button Styling */
+button {
+    @apply bg-[#3ed190] text-white py-2 px-4 rounded-lg text-base hover:bg-[#33a974] hover:shadow-lg hover:ring-2 hover:ring-[#aaf4d5] focus:outline-none transition duration-300 ease-in-out;
+}
+
+/* Headings (h2) */
+h2,h1,h3,h4,h5,h6 {
+    @apply text-3xl font-bold text-[#536e64] mb-4;
+}
+
+/* Input Fields */
+input {
+    @apply  p-2 border border-[#aaf4d5] rounded-md bg-white focus:ring-2 focus:ring-[#49e6a3] focus:outline-none transition duration-200 ease-in-out;
+}
+
+/* Select Dropdown */
+select {
+    @apply  p-2 border border-[#aaf4d5] rounded-md bg-white focus:ring-2 focus:ring-[#49e6a3] focus:outline-none transition duration-200 ease-in-out;
+}
+
+/* Textarea */
+textarea {
+    @apply  p-2 border border-[#aaf4d5] rounded-md bg-white focus:ring-2 focus:ring-[#49e6a3] focus:outline-none transition duration-200 ease-in-out;
+}
+
+/* Anchor Tags (Links) */
+a {
+    @apply text-[#49e6a3] hover:text-[#3ed190] hover:underline transition duration-200 ease-in-out;
+}
+
+/* General Styling for Repeated Tags (optional) */
+p {
+    @apply mb-4 text-[#536e64];
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
