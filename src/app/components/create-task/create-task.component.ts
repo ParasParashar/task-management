@@ -25,6 +25,7 @@ export class CreateTaskComponent implements OnInit {
     description: new FormControl('', [Validators.required]),
     date: new FormControl(new Date()),
     isCompleted: new FormControl(false),
+    children: new FormControl([]),
   });
 
   ngOnInit() {
@@ -35,8 +36,8 @@ export class CreateTaskComponent implements OnInit {
         description: this.task.description,
         date: this.task.date,
         isCompleted: this.task.isCompleted,
+        children: this.task.children
       });
-      console.log(this.task?.date)
     }
   }
 

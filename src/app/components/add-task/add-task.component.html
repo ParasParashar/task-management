@@ -1,7 +1,10 @@
 <div class="w-full flex flex-col gap-5">
-  <button (click)="onOpenModal()" class="w-1/2 md:w-1/4 ml-auto">
-    Create Task
-  </button>
+  <div class="flex justify-between items-center">
+    <h3>Main Tasks</h3>
+    <button (click)="onOpenModal()" class="w-1/2 md:w-1/4 ml-auto">
+      Create Task
+    </button>
+  </div>
 
   <div
     *ngIf="tasks.length > 0"

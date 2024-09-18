@@ -1,0 +1,67 @@
+<form
+  [formGroup]="taskForm"
+  (submit)="onSubmit()"
+  class="p-5 bg-white/30 backdrop-blur-lg shadow-lg rounded-lg w-full h-full"
+>
+  <h4 class="text-center">Add Sub Task</h4>
+  <div>
+    <span>Parent Task Name</span>
+    <h2>
+      {{ parentTask?.title }}
+    </h2>
+  </div>
+
+  <div class="flex flex-col gap-2 mb-4">
+    <label for="title" class="text-[#536e64] font-semibold">Title</label>
+    <input
+      type="text"
+      id="title"
+      name="title"
+      placeholder="Enter task title"
+      formControlName="title"
+    />
+    <div
+      *ngIf="taskForm.controls['title'].touched"
+      class="text-xs px-1 text-rose-500"
+    >
+      <span *ngIf="taskForm.controls['title'].errors?.['required']"
+        >Title is required</span
+      >
+      <span *ngIf="taskForm.controls['title'].errors?.['minlength']">
+        Minimum length required is
+        {{taskForm.controls['title'].errors?.['minlength']?.requiredLength}}
+      </span>
+    </div>
+  </div>
+  <div class="flex flex-col gap-2 mb-4">
+    <label for="description" class="text-[#536e64] font-semibold"
+      >Description</label
+    >
+    <textarea
+      id="description"
+      name="description"
+      placeholder="Enter task description"
+      formControlName="description"
+    ></textarea>
+    @if(taskForm.controls['description'].touched){
+    <div class="text-xs px-1 text-rose-500">
+      @if(taskForm.controls['description'].errors?.['required']){
+      <span>Description is required</span>
+      }
+    </div>
+    }
+  </div>
+  <div class="flex flex-col gap-2 mb-4">
+    <label for="date" class="text-[#536e64] font-semibold"
+      >Completion Date</label
+    >
+    <input
+      id="date"
+      type="date"
+      name="date"
+      placeholder="Enter task's completion date"
+      formControlName="date"
+    />
+  </div>
+  <button type="submit" [disabled]="taskForm.invalid">Create Sub task</button>
+</form>

@@ -20,7 +20,7 @@ export class SearchComponent implements OnInit {
 
   ngOnInit(): void {
     this.services.tasks$.subscribe(data => {
-      this.tasks = data;
+      this.tasks = this.services.flattenTasks(data);
       this.filteredTasks = this.tasks;
     });
   }

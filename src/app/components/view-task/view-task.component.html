@@ -1,12 +1,18 @@
 <div *ngIf="task" class="flex flex-col relative gap-5 lg:px-6 mx-auto">
   <!-- Task Status Button -->
 
-  <div class="flex items-center justify-between gap-x-3">
-    <div *ngIf="!isEdit">
-      <p class="text-xs">Completion Date</p>
-      <h6 class="font-bold">{{ task.date | date : "MMM d, yy" }}</h6>
-    </div>
-    <div class="flex ml-auto items-center gap-3">
+  <section
+    class="flex items-center flex-col md:flex-row w-full justify-center md:justify-between gap-2 md:gap-x-10"
+  >
+    <button
+      (click)="onToggleSubTask()"
+      class="w-full"
+      [ngClass]="!isSubTask ? 'bg-gray-400/40' : 'bg-rose-500 hover:bg-red-600'"
+    >
+      {{ isSubTask ? "Cancel" : "Add sub task" }}
+    </button>
+
+    <div *ngIf="!isSubTask" class="flex w-full items-center gap-3">
       <button
         (click)="onEdit()"
         class="w-8 h-8 flex items-center justify-center rounded-full transition-all duration-300 ease-in"
@@ -32,7 +38,7 @@
           class="flex items-center text-sm justify-center gap-2 text-green-700"
         >
           <img class="w-6 h-6 object-contain" src="/mark.svg" alt="completed" />
-          <p class="font-medium">Task Completed</p>
+          <p class="font-medium">Completed</p>
         </div>
 
         <!-- Not Completed State -->
@@ -40,7 +46,7 @@
           *ngIf="!task.isCompleted"
           class="flex items-center text-sm justify-center gap-2 text-sky-800"
         >
-          <p class="font-semibold">Mark as Completed</p>
+          <p class="font-semibold">Not Completed</p>
           <img class="w-6 h-6" src="/square-check.svg" alt="not completed" />
         </div>
       </button>
@@ -51,23 +57,52 @@
         <img class="w-5 h-5" src="/delete.svg" alt="delete" />
       </button>
     </div>
+  </section>
+
+  <div *ngIf="isSubTask; else showParent">
+    <app-sub-task-create
+      (editTask)="onSubTaskClose()"
+      [parentTask]="task"
+    ></app-sub-task-create>
   </div>
 
-  <div *ngIf="isEdit; else showArticle">
-    <app-create-task (editTask)="onEditClose()" [task]="task"></app-create-task>
-  </div>
-  <ng-template #showArticle>
-    <article>
-      <div>
-        <p class="text-xs">Title</p>
-        <h2 class="text-gray-700">{{ task.title }}</h2>
-      </div>
-      <div>
-        <p class="text-xs">Description</p>
-        <p class="text-gray-600 text-lg leading-relaxed">
-          {{ task.description }}
-        </p>
-      </div>
-    </article>
+  <ng-template #showParent>
+    <div *ngIf="isEdit; else showArticle">
+      <app-create-task
+        (editTask)="onEditClose()"
+        [task]="task"
+      ></app-create-task>
+    </div>
+    <ng-template #showArticle>
+      <article>
+        <div>
+          <p class="text-xs">Completion Date</p>
+          <h6 class="font-bold">{{ task.date | date : "MMM d, yy" }}</h6>
+        </div>
+        <div>
+          <p class="text-xs">Title</p>
+          <h2 class="text-gray-700">{{ task.title }}</h2>
+        </div>
+        <div>
+          <p class="text-xs">Description</p>
+          <p class="text-gray-600 text-lg leading-relaxed">
+            {{ task.description }}
+          </p>
+        </div>
+
+        <p *ngIf="task.children.length > 0">Sub Task of {{ task.title }}</p>
+        <div
+          *ngIf="task.children.length > 0"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4 h-full w-full"
+        >
+          <div
+            *ngFor="let item of task.children; let sn = index"
+            class="w-full h-full"
+          >
+            <app-task-card [sNo]="sn + 1" [item]="item"></app-task-card>
+          </div>
+        </div>
+      </article>
+    </ng-template>
   </ng-template>
 </div>
