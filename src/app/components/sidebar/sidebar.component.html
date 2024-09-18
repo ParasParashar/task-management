@@ -1,0 +1,30 @@
+<aside
+  class="flex flex-col w-full h-full bg-gradient-to-t from-gray-800 to-gray-700 p-2"
+>
+  <h5
+    routerLink="/"
+    class="text-2xl font-bold cursor-pointer font-mono text-gray-200"
+  >
+    Taskify
+  </h5>
+
+  <!-- Sidebar Links -->
+  <nav class="flex flex-col p-2 space-y-2">
+    <a
+      routerLink="/"
+      routerLinkActive="bg-gray-600 text-[#3ed190]"
+      class="p-2 flex items-start justify-start rounded-lg text-gray-200 hover:bg-gray-600 gap-x-3"
+    >
+      <img class="w-6 h-6" src="/home.svg" alt="Home" />
+      Home
+    </a>
+    <a
+      routerLink="/search"
+      routerLinkActive="bg-gray-600 text-[#3ed190]"
+      class="p-2 flex gap-3 items-start justify-start rounded-lg text-gray-200 hover:bg-gray-600"
+    >
+      <img class="w-6 h-6" src="/search.svg" alt="Home" />
+      Search
+    </a>
+  </nav>
+</aside>

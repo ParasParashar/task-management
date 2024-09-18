@@ -1,8 +1,34 @@
-<main class="flex items-center justify-center w-full h-full">
-  <section class="w-72 h-full border-r-4">Sidebar</section>
-  <section class="flex-1 overflow-auto w-full h-full p-3">
-    <router-outlet></router-outlet>
-    <!-- modal component  with high order  component -->
+<main class="flex h-full w-full">
+  <!-- sidebar -->
+  <section class="w-64 h-full hidden md:block">
+    <app-sidebar></app-sidebar>
+  </section>
+
+  <!-- toggle sidegar button -->
+  <button
+    class="absolute w-10 h-10 flex items-center justify-center rounded-full top-1 md:hidden z-50"
+    (click)="toggleSidebar()"
+    [ngClass]="isSidebarOpen ? 'left-64' : 'left-1'"
+  >
+    <span *ngIf="isSidebarOpen" class="text-lg">&times;</span>
+    <img *ngIf="!isSidebarOpen" src="/menu.svg" alt="menu" class="w-6 h-6" />
+  </button>
+
+  <!-- Sidebar for mobile -->
+  <section
+    class="fixed top-0 left-0 h-full w-64 z-30 border-r-2 shadow-lg transform transition-transform duration-300 ease-in-out"
+    [ngClass]="isSidebarOpen ? 'translate-x-0' : '-translate-x-full'"
+  >
+    <app-sidebar></app-sidebar>
+  </section>
+
+  <!-- main  -->
+  <section class="flex-1 overflow-auto w-full h-full">
+    <header class="w-full bg-gray-700 p-6"></header>
+    <div class="p-3">
+      <router-outlet></router-outlet>
+    </div>
+    <!-- modal component -->
     <app-modal>
       <app-create-task></app-create-task>
     </app-modal>

@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { TaskService } from '../../services/task.service';
 import { ITask } from '../../types/type';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule, DatePipe } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { CreateTaskComponent } from "../create-task/create-task.component";
@@ -17,6 +17,7 @@ import { CreateTaskComponent } from "../create-task/create-task.component";
 export class ViewTaskComponent implements OnInit {
   service = inject(TaskService);
   activeRouter = inject(ActivatedRoute);
+  router = inject(Router);
   isEdit: boolean = false;
   task: ITask | undefined = undefined;
   tasksSubscription!: Subscription;
@@ -44,6 +45,7 @@ export class ViewTaskComponent implements OnInit {
   onDelete(e: Event, id: number) {
     e.stopPropagation();
     this.service.onDeleteTask(id)
+    this.router.navigateByUrl('/')
   }
   onTaskToggle(e: Event, id: number) {
     e.stopPropagation();

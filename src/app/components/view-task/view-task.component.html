@@ -44,6 +44,12 @@
           <img class="w-6 h-6" src="/square-check.svg" alt="not completed" />
         </div>
       </button>
+      <button
+        (click)="onDelete($event, task.id)"
+        class="w-8 h-8 flex items-center justify-center bg-rose-400 rounded-full"
+      >
+        <img class="w-5 h-5" src="/delete.svg" alt="delete" />
+      </button>
     </div>
   </div>
 

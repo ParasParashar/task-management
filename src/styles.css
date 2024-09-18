@@ -44,7 +44,7 @@ textarea {
 
 /* Anchor Tags (Links) */
 a {
-    @apply text-[#49e6a3] hover:text-[#3ed190] hover:underline transition duration-200 ease-in-out;
+    @apply text-[#49e6a3] hover:no-underline hover:text-[#3ed190]  transition-all duration-200 ease-in-out;
 }
 
 /* General Styling for Repeated Tags (optional) */

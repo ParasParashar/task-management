@@ -1,0 +1,37 @@
+<div>
+  <h3 class="text-center font-bold text-xl mb-4">Search Task</h3>
+
+  <!-- Search Bar -->
+  <div class="flex gap-2 items-center justify-center w-full rounded-full">
+    <input
+      [(ngModel)]="searchValue"
+      (ngModelChange)="onSearch()"
+      type="text"
+      placeholder="Search task by title"
+      class="w-full border border-gray-300 p-2 rounded-lg"
+    />
+    <button
+      (click)="onSearch()"
+      class="w-20 bg-blue-500 text-white rounded-lg p-2"
+    >
+      Search
+    </button>
+  </div>
+
+  <!-- Task List -->
+  <div
+    *ngIf="filteredTasks.length > 0; else noTask"
+    class="grid pt-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4 h-full w-full"
+  >
+    <app-task-card
+      *ngFor="let item of filteredTasks; let i = index"
+      [sNo]="i + 1"
+      [item]="item"
+    ></app-task-card>
+  </div>
+
+  <!-- No Task Found -->
+  <ng-template #noTask>
+    <p class="text-center text-gray-500 mt-5">No tasks found</p>
+  </ng-template>
+</div>
