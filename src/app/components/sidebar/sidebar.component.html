@@ -27,4 +27,12 @@
       Search
     </a>
   </nav>
+  <h3>#Tasks</h3>
+  <section
+    class="flex flex-col gap-2 items-start justify-start w-full overflow-y-auto overflow-hidden"
+  >
+    <div *ngFor="let item of tasks" class="w-full">
+      <app-sidebar-task-item [task]="item"></app-sidebar-task-item>
+    </div>
+  </section>
 </aside>

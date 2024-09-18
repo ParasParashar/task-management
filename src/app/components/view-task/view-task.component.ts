@@ -25,21 +25,7 @@ export class ViewTaskComponent implements OnInit {
   tasksSubscription!: Subscription;
   isSubTask: boolean = false;
 
-  // ngOnInit() {
-  //   // gettng the task id
-  //   const taskId = +this.activeRouter.snapshot.params['id']
-  //   // subscribe to task updates
-  //   this.tasksSubscription = this.service.tasks$.subscribe(tasks => {
-  //     this.task = this.service.findSpecificTask(taskId);
-  //   });
-
-
-
-  // }
   ngOnInit() {
-    // Initialize with current task
-    this.updateTask();
-
     // Subscribe to route parameter changes
     this.tasksSubscription = this.activeRouter.params.subscribe(params => {
       this.updateTask();
