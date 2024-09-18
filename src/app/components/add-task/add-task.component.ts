@@ -17,18 +17,16 @@ export class AddTaskComponent implements OnInit {
   service = inject(TaskService);
   modalService = inject(ModalService);
   tasks: ITask[] = [];
+
   // initialise on component mount
   ngOnInit(): void {
-    this.loadTasks();
+    // Subscribe to the tasks observable to get live updates
+    this.service.tasks$.subscribe(tasksData => {
+      this.tasks = tasksData;
+    })
   }
 
-  loadTasks(): void {
-    this.tasks = this.service.getTasks();
-  }
 
-  onRefreshTask() {
-    this.loadTasks();
-  }
   // opent the modal
   onOpenModal() {
     this.modalService.onToggleOpen();

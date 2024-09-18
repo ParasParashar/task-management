@@ -1,8 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { TaskService } from "../../services/task.service";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ModalService } from '../../services/modal.service';
+import { ITask } from '../../types/type';
 @Component({
   selector: 'app-create-task',
   standalone: true,
@@ -10,10 +11,12 @@ import { ModalService } from '../../services/modal.service';
   templateUrl: './create-task.component.html',
   styleUrl: './create-task.component.css'
 })
-export class CreateTaskComponent {
+export class CreateTaskComponent implements OnInit {
   // using service
   service = inject(TaskService);
   modalService = inject(ModalService);
+  @Input() task: ITask | null = null;
+  @Output() editTask = new EventEmitter();
 
   // using form to create task
   taskForm: FormGroup = new FormGroup({
@@ -24,12 +27,30 @@ export class CreateTaskComponent {
     isCompleted: new FormControl(false),
   });
 
+  ngOnInit() {
+    if (this.task) {
+      this.taskForm.patchValue({
+        id: this.task.id,
+        title: this.task.title,
+        description: this.task.description,
+        date: this.task.date,
+        isCompleted: this.task.isCompleted,
+      });
+      console.log(this.task?.date)
+    }
+  }
+
   onSubmit() {
     if (this.taskForm.valid) {
-      this.service.onAddTask(this.taskForm.value);
-      this.taskForm.reset();
-      this.modalService.onToggleOpen();
+      if (this.task) {
+        this.service.onUpdateTask(this.taskForm.value);
+        this.editTask.emit();
+      } else {
+        this.service.onAddTask(this.taskForm.value);
+        this.modalService.onToggleOpen();
+      }
 
+      this.taskForm.reset();
     }
   }
 

@@ -4,11 +4,7 @@
     class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4 h-full w-full"
   >
     <div *ngFor="let item of tasks; let sn = index" class="w-full h-full">
-      <app-task-card
-        (isRefresh)="onRefreshTask()"
-        [sNo]="sn + 1"
-        [item]="item"
-      ></app-task-card>
+      <app-task-card [sNo]="sn + 1" [item]="item"></app-task-card>
     </div>
   </div>
 </div>

@@ -3,7 +3,9 @@
   (submit)="onSubmit()"
   class="p-5 bg-white/30 backdrop-blur-lg shadow-lg rounded-lg w-full h-full"
 >
-  <h4 class="text-center">Add Task</h4>
+  <h4 class="text-center">
+    {{ task ? "Edit Task" : "Add Task" }}
+  </h4>
   <div class="flex flex-col gap-2 mb-4">
     <label for="title" class="text-[#536e64] font-semibold">Title</label>
     <input
@@ -56,5 +58,7 @@
       formControlName="date"
     />
   </div>
-  <button type="submit" [disabled]="taskForm.invalid">Create Task</button>
+  <button type="submit" [disabled]="taskForm.invalid">
+    {{ task ? "Update Task" : "Create Task" }}
+  </button>
 </form>

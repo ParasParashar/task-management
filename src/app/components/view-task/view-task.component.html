@@ -1,0 +1,67 @@
+<div *ngIf="task" class="flex flex-col relative gap-5 lg:px-6 mx-auto">
+  <!-- Task Status Button -->
+
+  <div class="flex items-center justify-between gap-x-3">
+    <div *ngIf="!isEdit">
+      <p class="text-xs">Completion Date</p>
+      <h6 class="font-bold">{{ task.date | date : "MMM d, yy" }}</h6>
+    </div>
+    <div class="flex ml-auto items-center gap-3">
+      <button
+        (click)="onEdit()"
+        class="w-8 h-8 flex items-center justify-center rounded-full transition-all duration-300 ease-in"
+        [ngClass]="!isEdit ? 'bg-white/40' : 'bg-red-500 hover:bg-red-600'"
+      >
+        <img *ngIf="!isEdit" class="w-5 h-5" src="/edit.svg" alt="edit" />
+        <span *ngIf="isEdit" class="text-red-50 font-bold text-center"
+          >&times;</span
+        >
+      </button>
+      <button
+        class="z-2 flex w-auto items-center px-2 p-1 justify-center rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
+        [ngClass]="
+          task.isCompleted
+            ? 'bg-green-100 border-2 border-green-400'
+            : 'bg-sky-200 border-2 border-sky-300'
+        "
+        (click)="onTaskToggle($event, task.id)"
+      >
+        <!-- Completed State -->
+        <div
+          *ngIf="task.isCompleted"
+          class="flex items-center text-sm justify-center gap-2 text-green-700"
+        >
+          <img class="w-6 h-6 object-contain" src="/mark.svg" alt="completed" />
+          <p class="font-medium">Task Completed</p>
+        </div>
+
+        <!-- Not Completed State -->
+        <div
+          *ngIf="!task.isCompleted"
+          class="flex items-center text-sm justify-center gap-2 text-sky-800"
+        >
+          <p class="font-semibold">Mark as Completed</p>
+          <img class="w-6 h-6" src="/square-check.svg" alt="not completed" />
+        </div>
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="isEdit; else showArticle">
+    <app-create-task (editTask)="onEditClose()" [task]="task"></app-create-task>
+  </div>
+  <ng-template #showArticle>
+    <article>
+      <div>
+        <p class="text-xs">Title</p>
+        <h2 class="text-gray-700">{{ task.title }}</h2>
+      </div>
+      <div>
+        <p class="text-xs">Description</p>
+        <p class="text-gray-600 text-lg leading-relaxed">
+          {{ task.description }}
+        </p>
+      </div>
+    </article>
+  </ng-template>
+</div>

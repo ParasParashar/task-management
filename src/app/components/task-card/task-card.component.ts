@@ -1,22 +1,27 @@
 import { Component, EventEmitter, inject, input, Input, Output } from '@angular/core';
 import { ITask } from '../../types/type';
-import { DatePipe } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { TaskService } from '../../services/task.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-task-card',
   standalone: true,
-  imports: [DatePipe],
+  imports: [DatePipe, RouterLink, CommonModule],
   templateUrl: './task-card.component.html',
   styleUrl: './task-card.component.css'
 })
 export class TaskCardComponent {
   @Input() item!: ITask
   @Input() sNo!: number
-  @Output() isRefresh = new EventEmitter<any>();
   service = inject(TaskService)
-  onDelete(id: number) {
+  // deleting the task
+  onDelete(e: Event, id: number) {
+    e.stopPropagation();
     this.service.onDeleteTask(id)
-    this.isRefresh.emit();
+  }
+  onTaskToggle(e: Event, id: number) {
+    e.stopPropagation();
+    this.service.onToggleTaskComplete(id)
   }
 }
