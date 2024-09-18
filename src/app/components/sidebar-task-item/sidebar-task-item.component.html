@@ -1,7 +1,8 @@
-<div class="flex flex-col gap-2 w-full">
+<div class="flex flex-col gap-2 transition-all duration-300 ease-in-out w-full">
   <a
     [routerLink]="'/view/' + task.id"
-    class="bg-gray-800 text-gray-200 hover:bg-gray-900 w-full p-1 rounded-lg truncate transition-all duration-200 ease-in-out"
+    routerLinkActive="bg-gray-900 text-[#49e6a3]"
+    class="bg-gray-800 text-gray-200 hover:bg-gray-900 w-full p-1 rounded-lg truncate transition-all duration-300 ease-in-out"
   >
     {{ task.title }}
   </a>

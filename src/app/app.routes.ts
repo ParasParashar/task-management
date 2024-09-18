@@ -15,6 +15,8 @@ export const routes: Routes = [
     {
         path: 'login',
         component: LoginComponent,
+        title: 'Taskify-Login'
+
 
     },
     {
@@ -24,18 +26,23 @@ export const routes: Routes = [
             {
                 path: 'home',
                 component: AddTaskComponent,
-                canActivate: [authGuard]
+                canActivate: [authGuard],
+                title: 'Taskify-Add Task'
             },
             {
                 path: 'view/:id',
                 component: ViewTaskComponent,
-                canActivate: [authGuard]
+                canActivate: [authGuard],
+                title: 'Taskify-View Task'
+
 
             },
             {
                 path: 'search',
                 component: SearchComponent,
-                canActivate: [authGuard]
+                canActivate: [authGuard],
+                title: 'Taskify-Search Task'
+
 
             },
 
