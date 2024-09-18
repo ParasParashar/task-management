@@ -4,6 +4,7 @@ import { ITask } from '../../types/type';
 import { TaskService } from '../../services/task.service';
 import { SidebarTaskItemComponent } from '../sidebar-task-item/sidebar-task-item.component';
 import { CommonModule } from '@angular/common';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -14,12 +15,16 @@ import { CommonModule } from '@angular/common';
 })
 export class SidebarComponent {
   service = inject(TaskService);
+  modalService = inject(ModalService);
   tasks: ITask[] = [];
 
   ngOnInit(): void {
     this.service.tasks$.subscribe(tasksData => {
       this.tasks = tasksData;
     })
+  }
+  onOpen() {
+    this.modalService.onToggleOpen();
   }
 
 }

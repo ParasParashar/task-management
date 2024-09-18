@@ -1,11 +1,15 @@
-<div class="flex flex-col pl-2 gap-2 w-full">
+<div class="flex flex-col gap-2 w-full">
   <a
     [routerLink]="'/view/' + task.id"
-    class="bg-gray-800 rounded-lg hover:bg-slate-900 p-1 line-clamp-1 truncate"
+    class="bg-gray-800 text-gray-200 hover:bg-gray-900 w-full p-1 rounded-lg truncate transition-all duration-200 ease-in-out"
   >
     {{ task.title }}
   </a>
-  <div *ngFor="let item of task.children">
+
+  <div
+    *ngFor="let item of task.children; let i = index"
+    class="pl-4 border-l border-gray-600"
+  >
     <app-sidebar-task-item [task]="item"></app-sidebar-task-item>
   </div>
 </div>

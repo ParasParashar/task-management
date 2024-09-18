@@ -8,7 +8,7 @@
   <button
     class="absolute w-10 h-10 flex items-center justify-center rounded-full top-1 md:hidden z-50"
     (click)="toggleSidebar()"
-    [ngClass]="isSidebarOpen ? 'left-64' : 'left-1'"
+    [ngClass]="isSidebarOpen ? ' left-60' : 'left-1'"
   >
     <span *ngIf="isSidebarOpen" class="text-lg">&times;</span>
     <img *ngIf="!isSidebarOpen" src="/menu.svg" alt="menu" class="w-6 h-6" />
@@ -24,7 +24,14 @@
 
   <!-- main  -->
   <section class="flex-1 overflow-auto w-full h-full">
-    <header class="w-full bg-gray-700 p-6"></header>
+    <header class="w-full bg-gray-700 p-2">
+      <button
+        (click)="onLogout()"
+        class="w-11 ml-auto h-11 flex items-center justify-center rounded-full font-light"
+      >
+        <img src="/logout.jpeg" alt="logout" class="w-9 h-9 rounded-full" />
+      </button>
+    </header>
     <div class="p-3">
       <router-outlet></router-outlet>
     </div>

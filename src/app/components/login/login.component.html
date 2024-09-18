@@ -1,72 +1,104 @@
 <main
-  class="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat"
+  class="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat p-2"
   style="
-    background-image: url('https://images.pexels.com/photos/796602/pexels-photo-796602.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    background-image: url('https://images.pexels.com/photos/3854816/pexels-photo-3854816.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
   "
 >
   <div
-    class="w-full max-w-md bg-slate-800 bg-opacity-30 backdrop-blur-lg rounded-lg shadow-md overflow-hidden p-6 transform transition-all duration-500 hover:scale-105"
+    class="w-full max-w-5xl bg-slate-900/50 backdrop-blur-lg rounded-xl shadow-2xl overflow-hidden p-4 md:p-8 flex flex-col md:flex-row items-center justify-between transform transition-all duration-500 hover:scale-105"
   >
-    <h1 class="text-4xl font-serif font-bold text-center text-indigo-600 mb-4">
-      Client-X
-    </h1>
-    <p class="text-center font-bold text-zinc-300 mb-8">
-      Manage your clients and projects effortlessly within your company. Login
-      to get started!
-    </p>
-
-    <form [formGroup]="loginForm" (submit)="onSubmitForm()">
-      <div class="mb-4">
-        <label for="email" class="block text-sm font-medium text-gray-700"
-          >Email</label
-        >
-        <input
-          type="text"
-          id="email"
-          name="email"
-          formControlName="email"
-          class="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 transition-colors"
-          placeholder="Enter your email"
+    <!-- Left Section - Taglines -->
+    <div class="md:w-1/2 text-center md:text-left mb-8 md:mb-0 md:pr-8">
+      <div class="flex items-center gap-1 justify-center">
+        <img
+          src="/logo.jpeg"
+          alt="logo"
+          class="w-20 md:w-24 h-20 md:h-24 mx-auto md:mx-0 mb-4 rounded-full border-2 border-sky-600 shadow-lg"
         />
-        @if(loginForm.controls['email'].touched){
-        <div class="text-xm text-rose-400">
-          @if(loginForm.controls['email'].errors?.['required']){
-          <span>email is required</span>
-          }
-        </div>
-        }
+        <h1 class="md:text-5xl text-6xl font-bold text-sky-500 mb-3 font-sans">
+          Taskify
+        </h1>
       </div>
+      <p class="text-lg font-semibold text-zinc-300 mb-4 tracking-wide">
+        Your productivity partner for effortless task management.
+      </p>
+      <p class="text-sm text-slate-200 mb-6 tracking-wide">
+        Stay organized and complete your goals with ease. Manage your tasks,
+        deadlines, and collaborate seamlessly—all in one place.
+      </p>
+      <p class="text-xs text-gray-300 italic">
+        "Taskify helps you stay organized and productive—join us to start
+        managing your tasks like a pro."
+      </p>
+    </div>
 
-      <div class="mb-6">
-        <label for="password" class="block text-sm font-medium text-gray-700"
-          >Password</label
+    <!-- Right Section - Form -->
+    <div
+      class="md:w-1/2 w-full bg-slate-900 bg-opacity-80 rounded-lg p-6 md:ml-8"
+    >
+      <form [formGroup]="loginForm" (submit)="onSubmitForm()" class="space-y-6">
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-300"
+            >Email Address</label
+          >
+          <input
+            autofocus
+            type="text"
+            id="email"
+            name="email"
+            formControlName="email"
+            class="w-full mt-2 p-3 border border-transparent bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors placeholder-gray-400"
+            placeholder="you@example.com"
+          />
+          <div
+            *ngIf="
+              loginForm.controls['email'].touched &&
+              loginForm.controls['email'].invalid
+            "
+            class="text-sm text-rose-400 mt-2"
+          >
+            <span *ngIf="loginForm.controls['email'].errors?.['required']"
+              >Email is required</span
+            >
+          </div>
+        </div>
+
+        <div>
+          <label for="password" class="block text-sm font-medium text-gray-300"
+            >Password</label
+          >
+          <input
+            type="password"
+            id="password"
+            name="password"
+            formControlName="password"
+            class="w-full mt-2 p-3 border border-transparent bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors placeholder-gray-400"
+            placeholder="Enter your password"
+          />
+          <div
+            *ngIf="
+              loginForm.controls['password'].touched &&
+              loginForm.controls['password'].invalid
+            "
+            class="text-sm text-rose-400 mt-2"
+          >
+            <span *ngIf="loginForm.controls['password'].errors?.['required']"
+              >Password is required</span
+            >
+            <span *ngIf="loginForm.controls['password'].errors?.['minlength']"
+              >Password must be at least 5 characters long</span
+            >
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          [disabled]="loginForm.invalid"
+          class="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition-all duration-300 disabled:bg-indigo-400"
         >
-        <input
-          type="password"
-          id="password"
-          name="password"
-          formControlName="password"
-          class="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 transition-colors"
-          placeholder="Enter your password"
-        />
-        @if(loginForm.controls['password'].touched){
-        <div class="text-xm text-rose-400">
-          @if(loginForm.controls['password'].errors?.['required']){
-          <span>email is required</span>
-          } @if (loginForm.controls['password'].errors?.['minlength']) {
-          <span>Password should be atleast 5 digit long</span>
-          }
-        </div>
-        }
-      </div>
-
-      <button
-        type="submit"
-        [disabled]="loginForm.invalid"
-        class="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition-all duration-300 disabled:bg-sky-200"
-      >
-        Login
-      </button>
-    </form>
+          Log In
+        </button>
+      </form>
+    </div>
   </div>
 </main>

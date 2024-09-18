@@ -4,6 +4,7 @@
   <!-- Search Bar -->
   <div class="flex gap-2 items-center justify-center w-full rounded-full">
     <input
+      autofocus
       [(ngModel)]="searchValue"
       (ngModelChange)="onSearch()"
       type="text"

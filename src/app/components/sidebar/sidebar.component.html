@@ -3,8 +3,14 @@
 >
   <h5
     routerLink="/"
-    class="text-2xl font-bold cursor-pointer font-mono text-gray-200"
+    class="text-2xl flex items-center gap-1 font-bold cursor-pointer font-mono text-sky-500"
   >
+    <img
+      src="/logo.jpeg"
+      alt="Home"
+      class="rounded-full object-contain w-10 h-10 border-2 border-sky-600"
+    />
+
     Taskify
   </h5>
 
@@ -27,12 +33,24 @@
       Search
     </a>
   </nav>
-  <h3>#Tasks</h3>
-  <section
-    class="flex flex-col gap-2 items-start justify-start w-full overflow-y-auto overflow-hidden"
-  >
-    <div *ngFor="let item of tasks" class="w-full">
-      <app-sidebar-task-item [task]="item"></app-sidebar-task-item>
+  <div class="flex justify-between text-gray-300 items-center">
+    <h5 class="text-gray-300 my-auto">#Tasks</h5>
+    <button
+      (click)="onOpen()"
+      class="rounded-full my-auto m-0 text-gray-300 w-8 h-8 text-4xl flex items-center justify-center bg-transparent hover:bg-neutral-500/50"
+    >
+      <span>&#43;</span>
+    </button>
+  </div>
+
+  <section class="flex flex-col gap-3 items-start w-full overflow-y-auto">
+    <div *ngFor="let item of tasks; let i = index" class="w-full">
+      <div class="flex items-start gap-2 w-full">
+        <span class="text-gray-400">{{ i + 1 }}</span>
+        <div class="w-full">
+          <app-sidebar-task-item [task]="item"></app-sidebar-task-item>
+        </div>
+      </div>
     </div>
   </section>
 </aside>
