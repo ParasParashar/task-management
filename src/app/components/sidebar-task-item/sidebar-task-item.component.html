@@ -2,9 +2,12 @@
   <a
     [routerLink]="'/view/' + task.id"
     routerLinkActive="bg-gray-900 text-[#49e6a3]"
-    class="bg-gray-800 text-gray-200 hover:bg-gray-900 w-full p-1 rounded-lg truncate transition-all duration-300 ease-in-out"
+    class="bg-gray-800 flex items-center justify-between text-gray-200 hover:bg-gray-900 w-full p-1 rounded-lg truncate transition-all duration-300 ease-in-out"
   >
     {{ task.title }}
+    @if(task.isCompleted){
+    <span>&#10003;</span>
+    }
   </a>
 
   <div
